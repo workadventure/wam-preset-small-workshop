@@ -6,41 +6,40 @@ console.log('Script started successfully');
 
 let currentZone: string;
 let currentPopup: any;
+const config = [
+    {
+        zone: 'needHelp',
+        message: 'Do you need some guidance? We are happy to help you out.',
+        cta: [
+            {
+                label: 'Meet us',
+                className: 'primary',
+                callback: () => WA.openTab('https://play.staging.workadventu.re/@/tcm/workadventure/wa-village'),
+            }
+        ]
+    },
+    {
+        zone: 'followUs',
+        message: 'Hey! Have you already started following us?',
+        cta: [
+            {
+                label: 'LinkedIn',
+                className: 'primary',
+                callback: () => WA.openTab('https://www.linkedin.com/company/workadventu-re'),
+            },
+            {
+                label: 'Twitter',
+                className: 'primary',
+                callback: () => WA.openTab('https://twitter.com/workadventure_'),
+            }
+        ]
+    },
+]
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
     console.log('Scripting API ready');
     console.log('Player tags: ',WA.player.tags)
-
-    const config = [
-        {
-            zone: 'needHelp',
-            message: 'Do you need some guidance? We are happy to help you out.',
-            cta: [
-                {
-                    label: 'Meet us',
-                    className: 'primary',
-                    callback: () => WA.openTab('https://play.staging.workadventu.re/@/tcm/workadventure/wa-village'),
-                }
-            ]
-        },
-        {
-            zone: 'followUs',
-            message: 'Hey! Have you already started following us?',
-            cta: [
-                {
-                    label: 'LinkedIn',
-                    className: 'primary',
-                    callback: () => WA.openTab('https://www.linkedin.com/company/workadventu-re'),
-                },
-                {
-                    label: 'Twitter',
-                    className: 'primary',
-                    callback: () => WA.openTab('https://twitter.com/workadventure_'),
-                }
-            ]
-        },
-    ]
     
     WA.onEnterZone('needHelp', () => {
         currentZone = 'needHelp'
